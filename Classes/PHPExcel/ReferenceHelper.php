@@ -252,7 +252,7 @@ class PHPExcel_ReferenceHelper
     {
         $aDataValidationCollection = $pSheet->getDataValidationCollection();
         ($pNumCols > 0 || $pNumRows > 0) ? uksort($aDataValidationCollection, array('PHPExcel_ReferenceHelper','cellReverseSort')) : uksort($aDataValidationCollection, array('PHPExcel_ReferenceHelper','cellSort'));
-        
+
         foreach ($aDataValidationCollection as $key => $value) {
             $newReference = $this->updateCellReference($key, $pBefore, $pNumCols, $pNumRows);
             if ($key != $newReference) {
@@ -881,8 +881,8 @@ class PHPExcel_ReferenceHelper
             list($newColumn, $newRow) = PHPExcel_Cell::coordinateFromString($pCellReference);
 
             // Verify which parts should be updated
-            $updateColumn = (($newColumn{0} != '$') && ($beforeColumn{0} != '$') && (PHPExcel_Cell::columnIndexFromString($newColumn) >= PHPExcel_Cell::columnIndexFromString($beforeColumn)));
-            $updateRow = (($newRow{0} != '$') && ($beforeRow{0} != '$') && $newRow >= $beforeRow);
+            $updateColumn = (($newColumn[0] != '$') && ($beforeColumn[0] != '$') && (PHPExcel_Cell::columnIndexFromString($newColumn) >= PHPExcel_Cell::columnIndexFromString($beforeColumn)));
+            $updateRow = (($newRow[0] != '$') && ($beforeRow[0] != '$') && $newRow >= $beforeRow);
 
             // Create new column reference
             if ($updateColumn) {
